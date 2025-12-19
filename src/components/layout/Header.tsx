@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Sun, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useTheme } from "@/hooks/use-theme";
 
 const navLinks = [
   { label: "About", href: "#about" },
@@ -13,6 +14,7 @@ const navLinks = [
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -60,13 +62,24 @@ const Header = () => {
           ))}
         </motion.ul>
 
-        {/* CTA button */}
+        {/* Theme toggle + CTA */}
         <motion.div
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="hidden md:block"
+          className="hidden md:flex items-center gap-4"
         >
+          <button
+            onClick={toggleTheme}
+            className="p-2 rounded-full hover:bg-muted transition-colors"
+            aria-label="Toggle theme"
+          >
+            {theme === "dark" ? (
+              <Sun size={20} className="text-accent" />
+            ) : (
+              <Moon size={20} className="text-primary" />
+            )}
+          </button>
           <Button variant="hero" size="sm">
             Hire Me
           </Button>
@@ -104,8 +117,19 @@ const Header = () => {
                   </a>
                 </li>
               ))}
-              <li className="pt-4">
-                <Button variant="hero" className="w-full">
+              <li className="pt-4 flex items-center gap-3">
+                <button
+                  onClick={toggleTheme}
+                  className="p-2 rounded-full hover:bg-muted transition-colors"
+                  aria-label="Toggle theme"
+                >
+                  {theme === "dark" ? (
+                    <Sun size={20} className="text-accent" />
+                  ) : (
+                    <Moon size={20} className="text-primary" />
+                  )}
+                </button>
+                <Button variant="hero" className="flex-1">
                   Hire Me
                 </Button>
               </li>
