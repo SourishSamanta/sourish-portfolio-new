@@ -10,7 +10,7 @@ import Contact from "@/components/sections/Contact";
 const Index = () => {
   return (
     <div className="min-h-screen bg-background text-foreground scroll-smooth">
-      <Header />
+      
       <main>
         <Hero />
         <section id="about">
@@ -29,7 +29,7 @@ const Index = () => {
           <Contact />
         </section>
       </main>
-      <Footer />
+      
     </div>
   );
 };

@@ -181,7 +181,7 @@
   }
 
   .display-xl {
-    @apply text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.9] tracking-tight;
+    @apply text-5xl md:text-6xl lg:text-7xl font-bold leading-[0.9] tracking-tight;
     font-family: var(--font-display);
   }
 
@@ -193,5 +193,122 @@
   .body-lg {
     @apply text-lg md:text-xl leading-relaxed;
     font-family: var(--font-body);
+  }
+}
+
+/* Bento Grid Cards */
+.bento-card {
+  position: relative;
+  padding: 2rem;
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+  border-radius: 1rem;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.bento-card:hover {
+  border-color: hsl(var(--primary) / 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px -10px hsl(var(--primary) / 0.2);
+}
+
+.bento-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, hsl(var(--primary) / 0.05), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.bento-card:hover::before {
+  opacity: 1;
+}
+
+.bento-card-gradient {
+  position: relative;
+  padding: 2rem;
+  background: linear-gradient(135deg, hsl(var(--card)),hsl(var(--primary) / 0.2));
+  border-radius: 1rem;
+  
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.bento-card-gradient::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.1));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.bento-card-gradient:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 20px 40px -15px hsl(var(--primary) / 0.4);
+}
+
+.bento-card-gradient:hover::before {
+  opacity: 1;
+}
+
+.bento-card-dark {
+  position: relative;
+  padding: 2rem;
+  background: linear-gradient(135deg, hsl(var(--card)), hsl(var(--muted) / 0.5));
+  border: 1px solid hsl(var(--border));
+  border-radius: 1rem;
+  transition: all 0.3s ease;
+}
+
+.bento-card-dark:hover {
+  border-color: hsl(var(--primary) / 0.5);
+  transform: translateY(-2px);
+}
+
+/* Tech Badge */
+.tech-badge {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: hsl(var(--muted));
+  border: 1px solid hsl(var(--border));
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.tech-badge:hover {
+  background: hsl(var(--primary) / 0.1);
+  border-color: hsl(var(--primary) / 0.5);
+  transform: translateY(-2px);
+}
+
+/* Marquee Animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.333%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .bento-card,
+  .bento-card-gradient,
+  .bento-card-dark {
+    padding: 1.5rem;
   }
 }
